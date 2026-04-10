@@ -56,12 +56,12 @@ class Net(nn.Module):
         return self.output(x)
 
 # Load model
+# Load model
 import os
+model = Net().to(device)  # ← tambah ini!
 model_path = os.path.join(os.path.dirname(__file__), 'best_model.pth')
 model.load_state_dict(torch.load(model_path, map_location=device))
-# Label encoder
-label_encoder = LabelEncoder()
-label_encoder.fit(['cat', 'dog', 'wild'])
+model.eval() 
 
 # Transform
 transform = transforms.Compose([
