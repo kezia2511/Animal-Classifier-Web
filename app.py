@@ -56,10 +56,9 @@ class Net(nn.Module):
         return self.output(x)
 
 # Load model
-model = Net().to(device)
-model.load_state_dict(torch.load('best_model.pth', map_location=device))
-model.eval()
-
+import os
+model_path = os.path.join(os.path.dirname(__file__), 'best_model.pth')
+model.load_state_dict(torch.load(model_path, map_location=device))
 # Label encoder
 label_encoder = LabelEncoder()
 label_encoder.fit(['cat', 'dog', 'wild'])
